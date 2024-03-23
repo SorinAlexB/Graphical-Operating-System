@@ -10,8 +10,10 @@ bootloader:
 	objcopy -O binary -j .text boot/bin/kernel.img boot/bin/kernel.bin
 	cat boot/bin/boot.bin boot/bin/kernel.bin > os.img
 
-clear:
+clean:
 	rm -f boot/boot.img
 
 run:
-	qemu-system-x86_64 -L "/usr/bin.qemu-system-x86_64" -drive format=raw,file=os.img
+	qemu-system-x86_64 -L "/usr/local/bin/qemu-system-x86_64" -drive format=raw,file=os.img -display sdl
+
+	# qemu-system-x86_64 -L "/usr/local/bin/qemu-system-x86_64" -drive format=raw,file=os.img -vnc :0
